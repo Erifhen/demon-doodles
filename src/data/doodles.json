@@ -1,0 +1,308 @@
+[
+  {
+    "id": "demon001",
+    "name": "Umbrahorti",
+    "subname": "A sombra do jardim",
+    "description": "Espírito furtivo que brota entre raízes esquecidas, capaz de enfeitiçar e espalhar sementes de confusão.",
+    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/40728418722_9117eb6018_b.jpg?fit=max&w=2400",
+    "status": "normal",
+    "stats": {
+      "currentHp": 130,
+      "hp": 130,
+      "atk": 40,
+      "spatk": 80,
+      "def": 80,
+      "spdef": 65,
+      "speed": 85
+    },
+    "moveset": [
+      {
+        "name": "Espinhos Venenosos",
+        "category": "atk",
+        "power": 40,
+        "target": "enemy",
+        "accuracy": 90,
+        "effect": "poison"
+      },
+      {
+        "name": "Guarda das Sombras",
+        "category": "status",
+        "power": 0,
+        "target": "self",
+        "accuracy": 100,
+        "effect": "shield"
+      },
+      {
+        "name": "Pesadelos Constantes",
+        "category": "spatk",
+        "power": 50,
+        "target": "enemy",
+        "accuracy": 75,
+        "effect": "sleep"
+      },
+      {
+        "name": "Petalas Assombradas",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 100,
+        "effect": null
+      }
+    ]
+  },
+  {
+    "id": "demon002",
+    "name": "Culterrudis",
+    "subname": "A lâmina rústica",
+    "description": "Forjado na miséria e na astúcia, este guerreiro improvisado esconde sua lâmina entre trapos e intenções sombrias.",
+    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/25899320107_6525525d12_b.jpg?fit=max&w=2400",
+    "status": "normal",
+    "stats": {
+      "currentHp": 145,
+      "hp": 145,
+      "atk": 95,
+      "spatk": 30,
+      "def": 75,
+      "spdef": 65,
+      "speed": 70
+    },
+    "moveset": [
+      {
+        "name": "Sopro de Brasas",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 80,
+        "effect": "burn"
+      },
+      {
+        "name": "Lâmina do Vampiro",
+        "category": "atk",
+        "power": 25,
+        "target": "enemy",
+        "accuracy": 80,
+        "effect": "lifesteal"
+      },
+      {
+        "name": "Inspiração",
+        "category": "status",
+        "power": 0,
+        "target": "self",
+        "accuracy": 100,
+        "effect": "buff_atk"
+      },
+      {
+        "name": "Corte Cirurgico",
+        "category": "atk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 100,
+        "effect": null
+      }
+    ]
+  },
+  {
+    "id": "demon003",
+    "name": "Pestilacrum",
+    "subname": "A estátua das pestes",
+    "description": "Imóvel como um ídolo profano, exala miasmas antigos e carrega em seu cetro a memória viva das pragas esquecidas.",
+    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/26899947658_09fb58acc9_b.jpg?w=600&h=1200&auto=format,compress",
+    "status": "normal",
+    "stats": {
+      "currentHp": 160,
+      "hp": 160,
+      "atk": 30,
+      "spatk": 75,
+      "def": 75,
+      "spdef": 90,
+      "speed": 50
+    },
+    "moveset": [
+      {
+        "name": "Miasma Cruel",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 90,
+        "effect": "poison"
+      },
+      {
+        "name": "Regeneração",
+        "category": "status",
+        "power": 0,
+        "target": "self",
+        "accuracy": 100,
+        "effect": "heal"
+      },
+      {
+        "name": "Praga Pestilenta",
+        "category": "atk",
+        "power": 40,
+        "target": "enemy",
+        "accuracy": 90,
+        "effect": "burn"
+      },
+      {
+        "name": "Maldição Antiga",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 85,
+        "effect": "sleep"
+      }
+    ]
+  },
+  {
+    "id": "demon004",
+    "name": "Scurrophallus",
+    "subname": "O bufão fálico",
+    "description": "Criatura grotesca e zombeteira, encarna a luxúria em forma de sátira, dançando entre o obsceno e o profano.",
+    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/39875298385_5aa007eeca_b.jpg?fit=max&w=2400",
+    "status": "normal",
+    "stats": {
+      "currentHp": 140,
+      "hp": 140,
+      "atk": 80,
+      "spatk": 40,
+      "def": 85,
+      "spdef": 75,
+      "speed": 60
+    },
+    "moveset": [
+      {
+        "name": "Dança Edionda",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 90,
+        "effect": "debuff_spdef"
+      },
+      {
+        "name": "Endurecer",
+        "category": "status",
+        "power": 0,
+        "target": "self",
+        "accuracy": 100,
+        "effect": "buff_def"
+      },
+      {
+        "name": "Jogar Praga",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 80,
+        "effect": "debuff_spatk"
+      },
+      {
+        "name": "Lapada Seca",
+        "category": "atk",
+        "power": 50,
+        "target": "enemy",
+        "accuracy": 100,
+        "effect": null
+      }
+    ]
+  },
+  {
+    "id": "demon005",
+    "name": "Sordithaumus",
+    "subname": "O milagreiro imundo",
+    "description": "Profeta da sarjeta, conjura prodígios com restos e fé degenerada, acreditando que a miséria é o caminho da iluminação.",
+    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/26899948528_fb30ea61b2_b.jpg?fit=max&w=2400",
+    "status": "normal",
+    "stats": {
+      "currentHp": 125,
+      "hp": 125,
+      "atk": 45,
+      "spatk": 85,
+      "def": 60,
+      "spdef": 75,
+      "speed": 90
+    },
+    "moveset": [
+      {
+        "name": "Desapego Material",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 90,
+        "effect": "debuff_spdef"
+      },
+      {
+        "name": "Poção Mágica",
+        "category": "status",
+        "power": 0,
+        "target": "self",
+        "accuracy": 100,
+        "effect": "heal"
+      },
+      {
+        "name": "Capa Ilusória",
+        "category": "spatk",
+        "power": 25,
+        "target": "enemy",
+        "accuracy": 80,
+        "effect": "confuse"
+      },
+      {
+        "name": "Vassourada",
+        "category": "atk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 90,
+        "effect": null
+      }
+    ]
+  },
+  {
+    "id": "demon006",
+    "name": "Stramerrantis",
+    "subname": "O espantalho viajante",
+    "description": "Feito de pano e coragem, desafia seu destino estático e parte em jornada, guiado pelo vento e pela lâmina.",
+    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/40060461474_2550eabb32_b.jpg?w=600&h=1200&auto=format,compress",
+    "status": "normal",
+    "stats": {
+      "currentHp": 110,
+      "hp": 110,
+      "atk": 80,
+      "spatk": 75,
+      "def": 50,
+      "spdef": 65,
+      "speed": 100
+    },
+    "moveset": [
+      {
+        "name": "Talho do Espantalho",
+        "category": "atk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 75,
+        "effect": "lifesteal"
+      },
+      {
+        "name": "Terror Diurno",
+        "category": "spatk",
+        "power": 30,
+        "target": "enemy",
+        "accuracy": 95,
+        "effect": "debuff_def"
+      },
+      {
+        "name": "Costurar-se",
+        "category": "status",
+        "power": 0,
+        "target": "self",
+        "accuracy": 100,
+        "effect": "heal"
+      },
+      {
+        "name": "Corvos Pavorosos",
+        "category": "spatk",
+        "power": 20,
+        "target": "enemy",
+        "accuracy": 100,
+        "effect": "debuff_spdef"
+      }
+    ]
+  }
+]
