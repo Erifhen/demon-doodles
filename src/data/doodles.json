@@ -4,7 +4,7 @@
     "name": "Umbrahorti",
     "subname": "A sombra do jardim",
     "description": "Espírito furtivo que brota entre raízes esquecidas, capaz de enfeitiçar e espalhar sementes de confusão.",
-    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/40728418722_9117eb6018_b.jpg?fit=max&w=2400",
+    "picture": "https://i.imgur.com/kObvqND.png",
     "status": "normal",
     "stats": {
       "currentHp": 130,
@@ -17,12 +17,12 @@
     },
     "moveset": [
       {
-        "name": "Espinhos Venenosos",
+        "name": "Espinhos Lacerantes",
         "category": "atk",
         "power": 40,
         "target": "enemy",
         "accuracy": 90,
-        "effect": "poison"
+        "effect": null
       },
       {
         "name": "Guarda das Sombras",
@@ -46,7 +46,7 @@
         "power": 30,
         "target": "enemy",
         "accuracy": 100,
-        "effect": null
+        "effect": "debuff_spdef"
       }
     ]
   },
@@ -55,7 +55,7 @@
     "name": "Culterrudis",
     "subname": "A lâmina rústica",
     "description": "Forjado na miséria e na astúcia, este guerreiro improvisado esconde sua lâmina entre trapos e intenções sombrias.",
-    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/25899320107_6525525d12_b.jpg?fit=max&w=2400",
+    "picture": "https://i.imgur.com/XlRiaod.png",
     "status": "normal",
     "stats": {
       "currentHp": 145,
@@ -106,7 +106,7 @@
     "name": "Pestilacrum",
     "subname": "A estátua das pestes",
     "description": "Imóvel como um ídolo profano, exala miasmas antigos e carrega em seu cetro a memória viva das pragas esquecidas.",
-    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/26899947658_09fb58acc9_b.jpg?w=600&h=1200&auto=format,compress",
+    "picture": "https://i.imgur.com/o1WH0NI.png",
     "status": "normal",
     "stats": {
       "currentHp": 160,
@@ -140,7 +140,7 @@
         "power": 40,
         "target": "enemy",
         "accuracy": 90,
-        "effect": "burn"
+        "effect": "poison"
       },
       {
         "name": "Maldição Antiga",
@@ -148,7 +148,7 @@
         "power": 30,
         "target": "enemy",
         "accuracy": 85,
-        "effect": "sleep"
+        "effect": "debuff_spdef"
       }
     ]
   },
@@ -157,7 +157,7 @@
     "name": "Scurrophallus",
     "subname": "O bufão fálico",
     "description": "Criatura grotesca e zombeteira, encarna a luxúria em forma de sátira, dançando entre o obsceno e o profano.",
-    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/39875298385_5aa007eeca_b.jpg?fit=max&w=2400",
+    "picture": "https://i.imgur.com/ehSuNl8.png",
     "status": "normal",
     "stats": {
       "currentHp": 140,
@@ -208,7 +208,7 @@
     "name": "Sordithaumus",
     "subname": "O milagreiro imundo",
     "description": "Profeta da sarjeta, conjura prodígios com restos e fé degenerada, acreditando que a miséria é o caminho da iluminação.",
-    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/26899948528_fb30ea61b2_b.jpg?fit=max&w=2400",
+    "picture": "https://i.imgur.com/q7lPQi2.png",
     "status": "normal",
     "stats": {
       "currentHp": 125,
@@ -259,7 +259,7 @@
     "name": "Stramerrantis",
     "subname": "O espantalho viajante",
     "description": "Feito de pano e coragem, desafia seu destino estático e parte em jornada, guiado pelo vento e pela lâmina.",
-    "picture": "https://the-public-domain-review.imgix.net/collections/the-drolatic-dreams-of-pantagruel-1565/40060461474_2550eabb32_b.jpg?w=600&h=1200&auto=format,compress",
+    "picture": "https://i.imgur.com/SgHdTAi.png",
     "status": "normal",
     "stats": {
       "currentHp": 110,

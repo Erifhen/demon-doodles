@@ -25,14 +25,32 @@ const BattleScene = ({ teams }) => {
         log: ["A batalha começou!", "O que você fará?"],
     });
 
-    const { 
-        playerTeam, 
-        botTeam, 
-        playerDoodle, 
-        botDoodle, 
-        isGameOver 
+    const {
+        playerTeam,
+        botTeam,
+        playerDoodle,
+        botDoodle,
+        isGameOver
     } = battleState;
+    // -------------------------------------------------------------
+    // SINCRONIZAR ANIMAÇÃO
+    // -------------------------------------------------------------
+    const [visualHUD, setVisualHUD] = useState({
+        playerHp: teams.playerTeam[0].stats.currentHp,
+        playerStatus: teams.playerTeam[0].status,
+        botHp: teams.botTeam[0].stats.currentHp,
+        botStatus: teams.botTeam[0].status,
+    });
 
+    // Atualize também o useEffect de troca de Doodle
+    useEffect(() => {
+        setVisualHUD({
+            playerHp: playerDoodle.stats.currentHp,
+            playerStatus: playerDoodle.status,
+            botHp: botDoodle.stats.currentHp,
+            botStatus: botDoodle.status,
+        });
+    }, [playerDoodle.id, botDoodle.id]);
     // -------------------------------------------------------------
     // EFEITO PARA CONTROLAR A ANIMAÇÃO DE TEXTO DO JORNAL
     // -------------------------------------------------------------
@@ -73,7 +91,7 @@ const BattleScene = ({ teams }) => {
 
         // Atualiza o estado da batalha com o novo estado retornado
         setBattleState(newBattleState);
-        
+
         // Inicia a exibição do jornal com as novas mensagens de log
         setLogDisplay({
             isShowing: true,
@@ -95,7 +113,7 @@ const BattleScene = ({ teams }) => {
             setCurrentMenu('main');
         }
     };
-    
+
     // NOVO: Lógica para o bot trocar de Doodle automaticamente
     const handleBotFaintSwap = (botTeam) => {
         // Encontra o primeiro Doodle da equipe do bot que ainda não desmaiou
@@ -111,11 +129,11 @@ const BattleScene = ({ teams }) => {
                 botDoodle: nextDoodle,
                 botTeam: updatedBotTeam,
             }));
-            
+
             setLogDisplay(prevState => ({
                 ...prevState,
                 log: [...prevState.log, `O bot trocou para ${nextDoodle.name}!`
-            ]
+                ]
             }));
         } else {
             // Se não houver Doodles restantes, o jogador vence
@@ -123,11 +141,11 @@ const BattleScene = ({ teams }) => {
             setLogDisplay(prevState => ({
                 ...prevState,
                 log: [...prevState.log, "A equipe do bot foi derrotada!", "Você venceu!"
-            ]
+                ]
             }));
         }
     };
-    
+
     // NOVO: Lógica para o jogador trocar de Doodle manualmente após um desmaio
     const handlePlayerFaintSwap = (doodle) => {
         const updatedPlayerTeam = playerTeam.map(d =>
@@ -143,16 +161,15 @@ const BattleScene = ({ teams }) => {
         setLogDisplay(prevState => ({
             ...prevState,
             log: [...prevState.log, `Você escolheu ${doodle.name} para a batalha!`
-        ]
+            ]
         }));
-        
+
         // Retorna ao menu principal após a troca
         setCurrentMenu('main');
     };
 
     const handleLogAdvance = () => {
         if (logDisplay.isTyping) {
-            // Pula a animação
             const fullText = logDisplay.log[logDisplay.currentLogIndex];
             setLogDisplay(prevState => ({
                 ...prevState,
@@ -160,8 +177,16 @@ const BattleScene = ({ teams }) => {
                 currentText: fullText
             }));
         } else {
-            // Avança para a próxima mensagem ou fecha o log
             if (logDisplay.currentLogIndex < logDisplay.log.length - 1) {
+
+                // CORREÇÃO AQUI: Use battleState.playerDoodle em vez de apenas playerDoodle
+                setVisualHUD({
+                    playerHp: battleState.playerDoodle.stats.currentHp,
+                    playerStatus: battleState.playerDoodle.status,
+                    botHp: battleState.botDoodle.stats.currentHp,
+                    botStatus: battleState.botDoodle.status,
+                });
+
                 setLogDisplay(prevState => ({
                     ...prevState,
                     currentLogIndex: prevState.currentLogIndex + 1,
@@ -173,38 +198,50 @@ const BattleScene = ({ teams }) => {
             }
         }
     };
-    
+
     // -------------------------------------------------------------
     // FUNÇÕES DE RENDERIZAÇÃO
     // -------------------------------------------------------------
     const renderHealthBar = (currentHp, maxHp) => {
         const percentage = (currentHp / maxHp) * 100;
+
+        // Escolha da cor baseada na porcentagem
         const barColor = percentage > 60 ? 'bg-green-500' : percentage >= 30 ? 'bg-yellow-500' : 'bg-red-500';
+
         return (
-            <div className="w-full bg-gray-300 rounded-full h-2.5">
-                <div 
-                    className={`${barColor} h-2.5 rounded-full`} 
+            <div className="w-full bg-gray-300 rounded-full h-2.5 overflow-hidden">
+                <div
+                    className={`${barColor} h-2.5 rounded-full transition-all duration-500 ease-out`}
                     style={{ width: `${percentage}%` }}
                 ></div>
             </div>
         );
     };
 
-    const renderHUD = (doodle, isOpponent = false) => (
-        <div className={`p-4 border-2 border-brown rounded-lg shadow-md bg-parchment-light w-64 ${isOpponent ? 'text-right' : 'text-left'}`}>
-            <h3 className="font-pixel text-brown-dark text-lg truncate">{doodle.name}</h3>
-            <p className="font-medieval text-brown-dark text-sm">HP: {doodle.stats.currentHp}/{doodle.stats.hp}</p>
-            {renderHealthBar(doodle.stats.currentHp, doodle.stats.hp)}
-            {doodle.status && (
-                <p className="font-medieval text-red-600 text-xs mt-1">{doodle.status}</p>
-            )}
-        </div>
-    );
-    
+    const renderHUD = (doodle, isOpponent = false) => {
+        // Pegamos os valores do visualHUD
+        const hpToShow = isOpponent ? visualHUD.botHp : visualHUD.playerHp;
+        const statusToShow = isOpponent ? visualHUD.botStatus : visualHUD.playerStatus;
+
+        return (
+            <div className={`p-4 border-2 border-brown rounded-lg shadow-md bg-parchment-light w-64 ${isOpponent ? 'text-right' : 'text-left'}`}>
+                <h3 className="font-pixel text-brown-dark text-lg truncate">{doodle.name}</h3>
+                <p className="font-medieval text-brown-dark text-sm">HP: {hpToShow}/{doodle.stats.hp}</p>
+                {renderHealthBar(hpToShow, doodle.stats.hp)}
+
+                {/* Agora o status também é sincronizado! */}
+                {statusToShow && (
+                    <p className="font-medieval text-red-600 text-xs mt-1 animate-pulse">
+                        {statusToShow}
+                    </p>
+                )}
+            </div>
+        );
+    };
     const renderMiniHUD = (doodle) => {
         const isCurrentDoodle = doodle.id === playerDoodle.id;
         const borderColor = isCurrentDoodle ? 'border-blue-500' : 'border-brown-dark';
-    
+
         return (
             <button
                 key={doodle.id}
@@ -220,7 +257,7 @@ const BattleScene = ({ teams }) => {
             </button>
         );
     };
-    
+
     // Renderiza a área de ações ou o jornal de batalha
     const renderBattleArea = () => {
         if (isGameOver) {
@@ -236,7 +273,7 @@ const BattleScene = ({ teams }) => {
 
         if (logDisplay.isShowing) {
             return (
-                <div 
+                <div
                     className="flex-1 font-medieval text-brown-dark cursor-pointer h-full flex flex-col justify-end"
                     onClick={handleLogAdvance}
                 >
@@ -247,7 +284,7 @@ const BattleScene = ({ teams }) => {
                 </div>
             );
         }
-    
+
         switch (currentMenu) {
             case 'main':
                 return (
@@ -271,12 +308,12 @@ const BattleScene = ({ teams }) => {
                     <div className="relative w-full h-full p-2">
                         <div className="grid grid-cols-2 gap-2">
                             {playerDoodle.moveset.map(attack => (
-                                <button 
-                                    key={attack.name} 
-                                    onClick={() => handlePlayerAction({ type: 'attack', move: attack })} 
+                                <button
+                                    key={attack.name}
+                                    onClick={() => handlePlayerAction({ type: 'attack', move: attack })}
                                     className="bg-parchment py-4 px-2 border-2 border-brown-dark rounded-md font-pixel text-lg text-brown-dark hover:bg-parchment-dark text-left truncate"
                                 >
-                                    {attack.name} <br/> 
+                                    {attack.name} <br />
                                     <span className="text-sm font-medieval text-gray-600">
                                         Tipo: {attack.category} | P: {attack.power}
                                     </span>
@@ -326,7 +363,7 @@ const BattleScene = ({ teams }) => {
                         className="w-40 h-40 md:w-48 md:h-48 object-contain"
                     />
                 </div>
-    
+
                 <div className="w-full flex justify-around items-end">
                     <img
                         src={playerDoodle.picture}
@@ -336,7 +373,7 @@ const BattleScene = ({ teams }) => {
                     <div>{renderHUD(playerDoodle)}</div>
                 </div>
             </div>
-    
+
             <div className="w-full max-w-4xl h-48 bg-parchment-light border-4 border-brown rounded-lg shadow-xl p-4 flex flex-col">
                 {renderBattleArea()}
             </div>

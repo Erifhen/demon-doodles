@@ -69,8 +69,9 @@ export const useMove = (user, target, move) => {
                 newLog.push(`${newTarget.name} foi envenenado!`);
                 break;
             case "lifesteal":
-                newUser.stats.currentHp = Math.min(newUser.stats.hp, newUser.stats.currentHp + damage);
-                newLog.push(`${newUser.name} recuperou ${damage} de HP!`);
+                const healAmount = Math.floor(damage * 0.7);
+                newUser.stats.currentHp = Math.min(newUser.stats.hp, newUser.stats.currentHp + healAmount);
+                newLog.push(`${newUser.name} recuperou ${healAmount} de HP!`);
                 break;
             case "buff_atk":
                 newUser.stats.atk += 10;
@@ -87,7 +88,7 @@ export const useMove = (user, target, move) => {
             case "debuff_spatk":
                 newTarget.stats.spatk -= 10;
                 newLog.push(`${newTarget.name} teve seu ataque especial reduzido!`);
-                break;                
+                break;
             case "debuff_spdef":
                 newTarget.stats.spdef -= 10;
                 newLog.push(`${newTarget.name} teve sua defesa especial reduzida!`);
@@ -196,7 +197,7 @@ export const handleSleepCheckEndOfTurn = (doodle) => {
     // Checa se ainda está dormindo para tentar acordar
     if (newDoodle.status === "sleep") {
         newLog.push(`O dano balançou ${newDoodle.name}. Tentando acordar...`);
-        
+
         // 40% de chance de acordar no fim do turno
         if (Math.random() * 100 < 40) {
             newDoodle.status = null; // Acordou!
@@ -227,7 +228,7 @@ export const handleConfuseCheck = (doodle) => {
 
     if (newDoodle.status === "confuse") {
         newLog.push(`${newDoodle.name} está confuso!`);
-        
+
         // 40% de chance de ACERTAR o ataque
         if (Math.random() * 100 < 40) {
             newLog.push(`${newDoodle.name} conseguiu se concentrar!`);
@@ -235,7 +236,7 @@ export const handleConfuseCheck = (doodle) => {
         } else {
             // Falhou: Toma 10 de dano e não ataca
             newLog.push(`${newDoodle.name} está muito confuso e se machucou!`);
-            
+
             // Aplica dano de confusão
             newDoodle.stats.currentHp = Math.max(0, newDoodle.stats.currentHp - 10);
             newLog.push(`Recebeu 10 de dano da confusão!`);
