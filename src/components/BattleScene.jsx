@@ -45,12 +45,12 @@ const BattleScene = ({ teams }) => {
     // Atualize também o useEffect de troca de Doodle
     useEffect(() => {
         setVisualHUD({
-            playerHp: playerDoodle.stats.currentHp,
-            playerStatus: playerDoodle.status,
-            botHp: botDoodle.stats.currentHp,
-            botStatus: botDoodle.status,
+            playerHp: battleState.playerDoodle.stats.currentHp,
+            playerStatus: battleState.playerDoodle.status,
+            botHp: battleState.botDoodle.stats.currentHp,
+            botStatus: battleState.botDoodle.status,
         });
-    }, [playerDoodle.id, botDoodle.id]);
+    }, [battleState.playerDoodle.id, battleState.botDoodle.id]);
     // -------------------------------------------------------------
     // EFEITO PARA CONTROLAR A ANIMAÇÃO DE TEXTO DO JORNAL
     // -------------------------------------------------------------
